@@ -1,14 +1,20 @@
 defmodule Hangman.Main do
   def gen_word do
-    words = ["mango", "pineapple", "apple", "orange"]
+    words = ["mango", "orange", "grape", "pear"]
     Enum.random(words)
-    |> String.split("")
-    |> List.delete_at(-1)
   end
 
   def blank_word(word) do
-    Enum.map(word, fn letter ->
-      index = Enum.find_index(word, fn letter -> letter == letter end)
-      List.replace_at(word, index, "_") end)
+    len = String.length word
+    String.duplicate("_", len)
   end
 end
+
+#def blank_word do
+#    word = gen_word
+#    blank_word = Enum.each(word, fn letter ->
+#      index = Enum.find_index(word, fn char -> char == letter end)
+#      List.replace_at(word, index, "_") end)
+#    IO.puts blank_word
+#  end
+
