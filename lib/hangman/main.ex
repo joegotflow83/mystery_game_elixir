@@ -1,6 +1,6 @@
 defmodule Hangman.Main do
   def gen_word do
-    words = ["mango", "orange", "grape", "pear"]
+    words = ["mango"]
     Enum.random(words)
   end
 
@@ -15,20 +15,26 @@ defmodule Hangman.Main do
   end
 
   def check_guess(guess, word)do
-    case guess do
-      "o" ->
-        IO.puts "You guessed correctly"
-      "m" ->
-        IO.puts "You guessed correctly"
-    end
+    Enum.map(String.graphemes(word), fn letter ->
+      cond do
+        guess == letter ->
+          "You guessed a correct letter"
+        guess != letter ->
+          "You guessed an incorrect letter"
+      end
+    end)
+  end
+
+  def convert(blank_word) do
+
   end
 
   def round do
     word = gen_word
     |> blank_word
     |> IO.puts
+    IO.puts word
     guess = user_guess
-    word = Enum.
     check_guess(guess, word)
   end
 end
